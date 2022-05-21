@@ -1,5 +1,7 @@
 <img src="public/wizard-char.png"/>
+
 # Wizard Quests - A Simple To Do List
+
 Hello, my friend. Stay awhile and listen!
 
 This is a simple project for RocketSeat challenge.
