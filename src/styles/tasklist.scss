@@ -20,11 +20,26 @@ section.task-list {
 
     .input-group {
       display: flex;
+      flex-direction: column;
       gap: 0.25rem;
       align-items: center;
 
       background: #fff;
       font-size: 16px;
+
+      div{
+        display: flex;
+      }
+
+
+      .alert{
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ff4c4c;
+        color: #ff4c4c;
+        border-radius: 10px;
+        transition: 200ms ease-in;
+      }
       
       input {
         flex: 1;
@@ -45,14 +60,14 @@ section.task-list {
         font-weight: 600;
         border-radius: 8px;
         border: 0;
-        background: var(--green);
+        background: var(--brown);
         color: #fff;
         display: flex;
         flex-direction: row;
         align-items: center;
-
         padding: 14px;
         transition: filter 0.2s;
+        margin-left: 10px;
 
         &:hover {
           filter: brightness(0.95);

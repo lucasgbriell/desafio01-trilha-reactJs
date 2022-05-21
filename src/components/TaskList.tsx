@@ -13,34 +13,63 @@ interface Task {
 export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [requiredMessage, setRequiredMessage] = useState(false);
+  const [increment, setIncrement] = useState(1);
 
   function handleCreateNewTask() {
-    // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
+    if(newTaskTitle){
+      setRequiredMessage(false)
+      setTasks(prevState => [...tasks, {
+        id: increment ,
+        title: newTaskTitle,
+        isComplete: false,
+      }])
+      setIncrement(increment + 1)
+      setNewTaskTitle('')
+    }else{
+      setRequiredMessage(true)
+    }
   }
 
   function handleToggleTaskCompletion(id: number) {
+    const updateTasks = [...tasks]
+    const objIndex = updateTasks.findIndex((obj => obj.id == id));
+    updateTasks[objIndex].isComplete = (updateTasks[objIndex].isComplete) ? false: true
+    setTasks(updateTasks)
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
   }
 
   function handleRemoveTask(id: number) {
-    // Remova uma task da listagem pelo ID
+    const updateTasks = [...tasks]
+    const objIndex = updateTasks.findIndex((obj => obj.id == id))
+    updateTasks.splice(objIndex, 1)
+    setTasks(updateTasks)
   }
 
   return (
     <section className="task-list container">
       <header>
-        <h2>Minhas tasks</h2>
+        <h2>Your Quests</h2>
 
         <div className="input-group">
-          <input 
-            type="text" 
-            placeholder="Adicionar novo todo" 
-            onChange={(e) => setNewTaskTitle(e.target.value)}
-            value={newTaskTitle}
-          />
-          <button type="submit" data-testid="add-task-button" onClick={handleCreateNewTask}>
-            <FiCheckSquare size={16} color="#fff"/>
-          </button>
+          <div>
+            <input 
+              type="text" 
+              placeholder="New Quest *" 
+              onChange={(e) => setNewTaskTitle(e.target.value)}
+              value={newTaskTitle}
+            />
+            <button type="submit" data-testid="add-task-button" onClick={handleCreateNewTask}>
+              <FiCheckSquare size={16} color="#fff"/>
+            </button>
+          </div>
+
+          {requiredMessage && (
+          <div className='alert'>
+            <p>This field is required</p>
+          </div>
+          )}
+
         </div>
       </header>
 

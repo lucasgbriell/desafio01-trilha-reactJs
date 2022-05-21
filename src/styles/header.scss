@@ -1,6 +1,11 @@
 header.header {
-  background: var(--blue);
+  background: var(--custom-color);
   padding-top: 2rem;
+
+  h1{
+    color: #fff;
+    padding-left: 1rem;
+  }
   
   > div {
     max-width: 1120px;
