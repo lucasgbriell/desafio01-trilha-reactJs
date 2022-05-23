@@ -49,13 +49,13 @@ export function TaskList() {
   return (
     <section className="task-list container">
       <header>
-        <h2>Your Quests</h2>
+        <h2>Suas Quests</h2>
 
         <div className="input-group">
           <div>
             <input 
               type="text" 
-              placeholder="New Quest *" 
+              placeholder="Adicionar novo todo" 
               onChange={(e) => setNewTaskTitle(e.target.value)}
               value={newTaskTitle}
             />
@@ -66,7 +66,7 @@ export function TaskList() {
 
           {requiredMessage && (
           <div className='alert'>
-            <p>This field is required</p>
+            <p>Campo obrigatório</p>
           </div>
           )}
 
